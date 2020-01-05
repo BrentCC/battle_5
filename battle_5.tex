@@ -1,0 +1,73 @@
+
+%
+% Per la generazione corretta del 
+% pdflatex nome_file.tex
+% bibtex nome_file.aux
+% pdflatex nome_file.tex
+% pdflatex nome_file.tex
+
+
+% formato FRONTE RETRO
+\documentclass[epsfig,a4paper,11pt,titlepage,oneside,openany]{book}
+\usepackage{epsfig}
+\usepackage{plain}
+\usepackage{setspace}
+\usepackage[paperheight=29.7cm,paperwidth=21cm,outer=1.5cm,inner=2.5cm,top=2cm,bottom=2cm]{geometry} % per definizione layout
+\usepackage{titlesec} % per formato custom dei titoli dei capitoli
+\usepackage{multicol}
+
+%%%%%%%%%%%%%%
+% supporto lettere accentate
+%
+%\usepackage[latin1]{inputenc} % per Windows;
+\usepackage[utf8x]{inputenc} % per Linux (richiede il pacchetto unicode);
+%\usepackage[applemac]{inputenc} % per Mac.
+
+\singlespacing
+
+\usepackage[english]{babel}
+
+\begin{document}
+
+  % nessuna numerazione
+  \pagenumbering{gobble} 
+  \input{pagina_iniziale}
+
+  \clearpage
+ 
+  
+  \pagestyle{plain} % nessuna intestazione e pie pagina con numero al centro
+
+  
+  % inizio numerazione pagine in numeri arabi
+  \mainmatter      
+    \begingroup
+ 
+      \renewcommand{\cleardoublepage}{} 
+      \renewcommand{\clearpage}{} 
+
+      \titleformat{\chapter}
+        {\normalfont\Huge\bfseries}{\thechapter}{1em}{}
+        
+      \titlespacing*{\chapter}{0pt}{0.59in}{0.02in}
+      \titlespacing*{\section}{0pt}{0.20in}{0.02in}
+      \titlespacing*{\subsection}{0pt}{0.10in}{0.02in}
+      
+
+      % List sections
+      \input{introduction}
+      \input{scenario}
+      \input{cyborg_view}
+      \input{gm_view}
+      \input{reconciliation}
+      \input{conclusion}
+   
+      
+    \endgroup
+
+
+
+    \bibliographystyle{plain}
+    \bibliography{biblio}
+
+\end{document}
